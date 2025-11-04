@@ -51,7 +51,7 @@ class RegisterPage(customtkinter.CTkFrame):
             hover_color = "blue"
         )
 
-        self.register_text.pack(pady=20)
+        self.register_text.pack(pady=10)
         self.username_entry.pack(pady=10)
         self.password_entry.pack(pady=10)
         self.repeat_password_entry.pack(pady=10)

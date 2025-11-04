@@ -18,7 +18,6 @@ class Controller(customtkinter.CTk):
 
         login_page = LoginPage(self, show_register=lambda: self.show_frame(RegisterPage))
         register_page = RegisterPage(self, show_login=lambda: self.show_frame(LoginPage))
-
         self.frames[LoginPage] = login_page
         self.frames[RegisterPage] = register_page
         
