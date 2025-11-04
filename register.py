@@ -2,9 +2,10 @@ import tkinter
 import customtkinter
 
 class RegisterPage(customtkinter.CTkFrame):
-    def __init__(self, parent, login_frame=None):
-        super().__init__(parent)
-        self.login_frame = login_frame
+    def __init__(self, controller, show_login):
+        super().__init__(controller)
+        self.controller = controller
+        self.show_login = show_login
 
         self.pack(fill="both", expand=True)
 
@@ -43,7 +44,7 @@ class RegisterPage(customtkinter.CTkFrame):
 
         self.go_login_button = customtkinter.CTkButton(
             self,
-            command=self.go_to_login,
+            command = self.show_login,
             text = "Go to Login",
             width = 50,
             height = 25,
@@ -57,8 +58,3 @@ class RegisterPage(customtkinter.CTkFrame):
         self.register_button.pack(pady=10)
         self.login_text.pack(pady=10)
         self.go_login_button.pack(pady=5)
-
-    def go_to_login(self):
-        self.pack_forget()
-        self.login_frame.pack(fill="both", expand=True)
-

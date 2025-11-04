@@ -7,22 +7,31 @@ from register import RegisterPage
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("blue")
 
-root = customtkinter.CTk()
 
-root.title('UserAuth')
-root.geometry('600x350')
+class Controller(customtkinter.CTk):
+    def __init__(self):
+        super().__init__()
+        self.title('UserAuth')
+        self.geometry('600x350')
 
-register_frame= RegisterPage(root)
-login_frame = LoginPage(root, register_frame)
-register_frame.login_frame = login_frame
+        self.frames={}
 
-def show_login():
-    register_frame.pack_forget()
-    login_frame.pack(fill="both", expand=True)
+        login_page = LoginPage(self, show_register=lambda: self.show_frame(RegisterPage))
+        register_page = RegisterPage(self, show_login=lambda: self.show_frame(LoginPage))
 
-def show_register():
-    login_frame.pack_forget()
-    register_frame.pack(fill="both", expand=True)
-
-show_login()
-root.mainloop()
+        self.frames[LoginPage] = login_page
+        self.frames[RegisterPage] = register_page
+        
+        for page in self.frames.values():
+            page.pack(fill="both", expand=True)
+            page.pack_forget()
+        
+        self.show_frame(LoginPage)
+    
+    def show_frame(self, page_class):
+        for page in self.frames.values():
+            page.pack_forget()
+        self.frames[page_class].pack(fill="both", expand=True)
+    
+controller = Controller()
+controller.mainloop()
