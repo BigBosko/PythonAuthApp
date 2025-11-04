@@ -1,5 +1,7 @@
 import tkinter
 import customtkinter
+from login import LoginPage
+from register import RegisterPage
 
 #theme and color
 customtkinter.set_appearance_mode("dark")
@@ -10,54 +12,17 @@ root = customtkinter.CTk()
 root.title('UserAuth')
 root.geometry('600x350')
 
-click_counter=0
-username=None
-password=None
+register_frame= RegisterPage(root)
+login_frame = LoginPage(root, register_frame)
+register_frame.login_frame = login_frame
 
-def submit_action():
-    global click_counter
-    click_counter+=1
-    first_label.configure(text=f"Button clicked {click_counter} times")
-    pass
+def show_login():
+    register_frame.pack_forget()
+    login_frame.pack(fill="both", expand=True)
 
-login_text = customtkinter.CTkLabel(
-    root,
-    text="Login"
-)
+def show_register():
+    login_frame.pack_forget()
+    register_frame.pack(fill="both", expand=True)
 
-username_entry = customtkinter.CTkEntry(
-    root, 
-    placeholder_text="username"
-    )
-password_entry = customtkinter.CTkEntry(
-    root,
-    placeholder_text="password"
-)
-
-submit = customtkinter.CTkButton(
-    root,
-    text="Submit",
-    command=submit_action,
-    height=100,
-    width=200,
-    font=("Helvetica", 24),
-    text_color="white",
-    fg_color="blue",
-    bg_color="white",
-    hover_color="purple",
-    corner_radius=50,
-    border_width=2,
-    border_color="yellow",
-    )
-
-login_text.pack(pady=10)
-
-username_entry.pack(pady=10)
-password_entry.pack(pady=10)
-
-submit.pack(pady=20)
-
-
-
-
+show_login()
 root.mainloop()
