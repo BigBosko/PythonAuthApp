@@ -14,16 +14,30 @@ click_counter=0
 username=None
 password=None
 
-def first_button_action():
+def submit_action():
     global click_counter
     click_counter+=1
     first_label.configure(text=f"Button clicked {click_counter} times")
     pass
 
-first_button = customtkinter.CTkButton(
+login_text = customtkinter.CTkLabel(
     root,
-    text="Helo World",
-    command=first_button_action,
+    text="Login"
+)
+
+username_entry = customtkinter.CTkEntry(
+    root, 
+    placeholder_text="username"
+    )
+password_entry = customtkinter.CTkEntry(
+    root,
+    placeholder_text="password"
+)
+
+submit = customtkinter.CTkButton(
+    root,
+    text="Submit",
+    command=submit_action,
     height=100,
     width=200,
     font=("Helvetica", 24),
@@ -36,22 +50,13 @@ first_button = customtkinter.CTkButton(
     border_color="yellow",
     )
 
-username_entry = customtkinter.CTkEntry(
-    root, 
-    placeholder_text="username"
-    )
-password_entry = customtkinter.CTkEntry(
-    root,
-    placeholder_text="password"
-)
+login_text.pack(pady=10)
 
-username_entry.pack(pady=20)
+username_entry.pack(pady=10)
 password_entry.pack(pady=10)
 
-first_button.pack(pady=20)
+submit.pack(pady=20)
 
-first_label = customtkinter.CTkLabel(root, text="Button clicked 0 times")
-first_label.pack(pady=20)
 
 
 
