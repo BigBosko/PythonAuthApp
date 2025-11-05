@@ -1,11 +1,13 @@
 import tkinter
 import customtkinter
+from database import is_login_correct
 
 class LoginPage(customtkinter.CTkFrame):
-    def __init__(self, controller, show_register):
+    def __init__(self, controller, show_register, show_home):
         super().__init__(controller)
         self.controller = controller
         self.show_register = show_register
+        self.show_home = show_home
 
         self.pack(fill="both", expand=True)
 
@@ -26,7 +28,7 @@ class LoginPage(customtkinter.CTkFrame):
 
         self.login_button = customtkinter.CTkButton(
             self,
-            command=self.submit_action,
+            command=self.login_submit_action,
             text="Login",
             width = 50,
             height = 25,
@@ -54,6 +56,11 @@ class LoginPage(customtkinter.CTkFrame):
         self.no_acc_text.pack(pady=10)
         self.go_register_button.pack(pady=5)
 
-    def submit_action(self):
+    def login_submit_action(self):
         username=self.username_entry.get().strip()
         password=self.password_entry.get().strip()
+        if is_login_correct(username, password):
+            self.show_home()
+            print("Login succesfull")
+        else:
+            print("Invalid login information")
