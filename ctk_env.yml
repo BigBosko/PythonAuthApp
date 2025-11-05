@@ -1,0 +1,5 @@
+name: ctk_envionment
+channels:
+  - conda-forge
+  - defaults
+prefix: C:\Users\bostj\miniconda3\envs\ctk_envionment
