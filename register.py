@@ -74,6 +74,7 @@ class RegisterPage(customtkinter.CTkFrame):
             if self.are_passwords_matching(pass0, pass1):
                 add_user(username, pass0)
                 print("Registration succesfull")
+                self.show_login()
             else:
                 print("Passwords aren't matching")
         else:
