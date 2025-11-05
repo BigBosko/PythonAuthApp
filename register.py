@@ -1,5 +1,6 @@
 import tkinter
 import customtkinter
+from database import add_user, is_username_unique
 
 class RegisterPage(customtkinter.CTkFrame):
     def __init__(self, controller, show_login):
@@ -31,6 +32,8 @@ class RegisterPage(customtkinter.CTkFrame):
 
         self.register_button = customtkinter.CTkButton(
             self,
+            #command= kaj se zgodi ko se uporabnik hoče registrirsti?
+            #preveriti se mora če sta obe gesli enaki, če uprabniško ime še ne obstaja in regex
             text = "Register",
             width = 50,
             height = 25,
