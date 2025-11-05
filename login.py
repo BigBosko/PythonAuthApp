@@ -1,6 +1,5 @@
 import tkinter
 import customtkinter
-import database
 
 class LoginPage(customtkinter.CTkFrame):
     def __init__(self, controller, show_register):

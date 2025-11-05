@@ -3,7 +3,6 @@ import bcrypt
 
 DB_FILE ="user_auth.db"
 
-
 def create_user_table():
     con=sql.connect(DB_FILE)
     cur = con.cursor()
@@ -50,3 +49,5 @@ def is_username_unique(username):
     result = cur.fetchone()
     con.close()
     return result is None
+
+create_user_table()

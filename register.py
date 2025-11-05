@@ -8,6 +8,7 @@ class RegisterPage(customtkinter.CTkFrame):
         self.controller = controller
         self.show_login = show_login
 
+
         self.pack(fill="both", expand=True)
 
         self.register_text = customtkinter.CTkLabel(
@@ -32,8 +33,7 @@ class RegisterPage(customtkinter.CTkFrame):
 
         self.register_button = customtkinter.CTkButton(
             self,
-            #command= kaj se zgodi ko se uporabnik hoče registrirsti?
-            #preveriti se mora če sta obe gesli enaki, če uprabniško ime še ne obstaja in regex
+            command=self.register_action, #regex
             text = "Register",
             width = 50,
             height = 25,
@@ -42,7 +42,7 @@ class RegisterPage(customtkinter.CTkFrame):
 
         self.login_text = customtkinter.CTkLabel(
             self,
-            text = "Already have an accounnt? Login here"
+            text = "Already have an account? Login here"
         )
 
         self.go_login_button = customtkinter.CTkButton(
@@ -61,3 +61,20 @@ class RegisterPage(customtkinter.CTkFrame):
         self.register_button.pack(pady=10)
         self.login_text.pack(pady=10)
         self.go_login_button.pack(pady=5)
+    
+    def are_passwords_matching(self, pass0, pass1):
+        return pass0==pass1
+
+    def register_action(self):
+        username = self.username_entry.get()
+        pass0 = self.password_entry.get()
+        pass1 = self.repeat_password_entry.get()
+
+        if is_username_unique(username):
+            if self.are_passwords_matching(pass0, pass1):
+                add_user(username, pass0)
+                print("Registration succesfull")
+            else:
+                print("Passwords aren't matching")
+        else:
+            print("Username already taken")
