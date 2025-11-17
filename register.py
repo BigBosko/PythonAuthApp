@@ -1,5 +1,6 @@
 import tkinter
 import customtkinter
+import re
 from database import add_user, is_username_unique
 
 class RegisterPage(customtkinter.CTkFrame):
@@ -64,6 +65,10 @@ class RegisterPage(customtkinter.CTkFrame):
     
     def are_passwords_matching(self, pass0, pass1):
         return pass0==pass1
+    
+    def input_validation(username, password):
+        if not re.match(None): pass
+
 
     def register_action(self):
         username = self.username_entry.get()
